@@ -22,24 +22,24 @@ def ask_mc_version(root) -> str | None:
     dialog.geometry("320x120")
     dialog.resizable(False, False)
     dialog.transient(root)
-    dialog.grab_set()
+    dialog.grab_set() # blocks interaction with main window
 
     tk.Label(dialog, text="Enter the desired version:").pack(pady=(10, 4))
 
     version_var = tk.StringVar()
     entry = tk.Entry(dialog, textvariable=version_var)
     entry.pack(pady=4)
-    entry.focus_set()
+    entry.focus_set() # immediately focused to catch errors
 
     selected = {"version": None}
 
-    def confirm(event=None):
+    def confirm(event=None): # when user clicks ok or presses enter
         v = version_var.get().strip()
         if v:
             selected["version"] = v
             dialog.destroy()
 
-    def on_close():
+    def on_close(): # if user closes the window without confirming
         selected["version"] = None
         dialog.destroy()
 
@@ -47,7 +47,7 @@ def ask_mc_version(root) -> str | None:
     entry.bind("<Return>", confirm)
     dialog.protocol("WM_DELETE_WINDOW", on_close)
 
-    dialog.wait_window()  
+    dialog.wait_window() # wait till its closed
     return selected["version"]
 
 def search_modrinth(mod_name: str, mc_version: str):
@@ -63,7 +63,7 @@ def search_modrinth(mod_name: str, mc_version: str):
         return None
 
     data = r.json()
-    return data.get("hits", [None])[0]
+    return data.get("hits", [None])[0] # returns if it worked
 
 
 def download_mod(project_id: str, mod_name: str, mc_version: str, output_folder: str) -> bool:
@@ -76,7 +76,7 @@ def download_mod(project_id: str, mod_name: str, mc_version: str, output_folder:
         print(Fore.RED + f"Failed to fetch versions for {mod_name}: {e}")
         return False
 
-    versions = r.json()
+    versions = r.json() # looks for versions of the wanted mc version
     for v in versions:
         if mc_version in v.get("game_versions", []):
             jar_files = [f for f in v.get("files", []) if f.get("filename", "").endswith(".jar")]
@@ -89,7 +89,7 @@ def download_mod(project_id: str, mod_name: str, mc_version: str, output_folder:
             print(Fore.YELLOW + f"Downloading {Fore.RED}{mod_name} {Fore.YELLOW}→ {Fore.GREEN}{file_name}")
             file_path = os.path.join(output_folder, file_name)
 
-            try:
+            try: # streams download to avoid memory issues of bad PC's 
                 with requests.get(file_url, stream=True, timeout=60) as f:
                     f.raise_for_status()
                     with open(file_path, "wb") as out_file:
@@ -103,21 +103,20 @@ def download_mod(project_id: str, mod_name: str, mc_version: str, output_folder:
     return False
 
 def main():
-    os.system("title Mod Updater by Sypherox")
+    os.system("title Mod Updater by Sypherox") # dont you dare to change the name
 
     root = tk.Tk()
-    # root.withdraw()  # die wichse macht nur errors, sollte auch so gehen
     root.lift()
     root.attributes('-topmost', True)
     root.after_idle(lambda: root.attributes('-topmost', False))
 
-    mods_folder = filedialog.askdirectory(parent=root, title="Select your Minecraft mods folder")
+    mods_folder = filedialog.askdirectory(parent=root, title="Select your Minecraft mods folder") # select mods folder
     if not mods_folder:
         print(Fore.RED + "❌ No mods folder selected – exiting.")
         root.destroy()
         return
 
-    mods = [f for f in os.listdir(mods_folder) if f.endswith(".jar")]
+    mods = [f for f in os.listdir(mods_folder) if f.endswith(".jar")] # lists all the .jar mods that got found in selected folder
     if not mods:
         print(Fore.YELLOW + "⚠️ No .jar mods found in the selected folder.")
         root.destroy()
@@ -155,7 +154,7 @@ def main():
         except Exception as e:
             print(Fore.RED + f"❌ Error processing {mod_file}: {e}")
 
-    webbrowser.open(output_folder)
+    webbrowser.open(output_folder) # opens the output folder for a better experience
 
     input("\nPress Enter to exit...")
 
