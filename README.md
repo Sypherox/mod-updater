@@ -23,7 +23,7 @@ Check for the latest compatible versions and download them with a single click.
 
 Watch this quick tutorial on how to use the Tool:
 
-[![Watch the tutorial](https://img.youtube.com/vi/A6a8eGOkD-s/hqdefault.jpg)](https://www.youtube.com/watch?v=A6a8eGOkD-s)
+[![Watch the tutorial](https://img.youtube.com/vi/LYWVLeyUHH0/hqdefault.jpg)](https://www.youtube.com/watch?v=LYWVLeyUHH0)
 
 ---
 
