@@ -2,7 +2,7 @@
 
 [![Python Version](https://img.shields.io/badge/Python-3.10%2B-blue)](https://www.python.org/)
 [![License](https://img.shields.io/badge/License-MIT-green)](LICENSE)
-[![Discord](https://img.shields.io/discord/ExGSqUT6qk?label=Discord&logo=discord&color=5865F2)](https://discord.gg/ExGSqUT6qk)
+[![Discord](https://img.shields.io/badge/Discord-Join-5865F2?logo=discord&logoColor=white)](https://discord.gg/ExGSqUT6qk)
 
 A Python tool to **automatically update your Minecraft mods** via [Modrinth](https://modrinth.com)'s API.  
 Select your mods folder, pick your Minecraft version and loader ➟ done.
