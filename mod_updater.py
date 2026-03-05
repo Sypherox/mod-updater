@@ -189,7 +189,7 @@ def write_log(log_path: str, entries: list[str], mc_version: str, loader: str, m
     with open(log_path, "w", encoding="utf-8") as f:
         f.write("=" * 60 + "\n")
         f.write("  Mod Updater — © sypherox.dev\n")
-        f.write("  Support: https://discord.gg/ExGSqUT6qk\n")
+        f.write("  Support: https://sypherox.dev/modupdater/\n")
         f.write("=" * 60 + "\n\n")
 
         f.write("[[ SYSTEM INFO ]]\n")
@@ -217,7 +217,7 @@ def write_log(log_path: str, entries: list[str], mc_version: str, loader: str, m
             f.write("\n[[ ACTION REQUIRED ]]\n")
             f.write("  The following mods could not be updated automatically.\n")
             f.write("  Please update them manually or report this log to us:\n")
-            f.write("  https://discord.gg/ExGSqUT6qk\n\n")
+            f.write("  https://sypherox.dev/modupdater/\n\n")
             for m in results["not_found"]:
                 f.write(f"  [NOT FOUND]  {m}\n")
             for m in results["no_version"]:
@@ -227,7 +227,7 @@ def write_log(log_path: str, entries: list[str], mc_version: str, loader: str, m
 
         f.write("\n" + "=" * 60 + "\n")
         f.write("  If you need help, join our Discord and send this file:\n")
-        f.write("  https://discord.gg/ExGSqUT6qk\n")
+        f.write("  https://sypherox.dev/modupdater/\n")
         f.write("=" * 60 + "\n")
 
 def main():
@@ -376,7 +376,7 @@ def main():
 
     webbrowser.open(output_folder)
     time.sleep(0.5)
-    webbrowser.open("https://discord.gg/ExGSqUT6qk")
+    webbrowser.open("https://sypherox.dev/modupdater/")
 
     input("\nPress Enter to exit...")
 
